@@ -1,234 +1,663 @@
-# Customer Churn Prediction Using Python
+Customer Churn Prediction Using Machine Learning
 
-A machine learning project that predicts customer churn using the IBM Telco Customer Churn dataset, with a focus on classification, model evaluation, and customer retention insights.
+Project Overview
 
-## Project Overview
+Customer churn occurs when customers stop using a company's products or services. Predicting churn helps businesses identify customers who may leave and take proactive steps to improve customer retention.
 
-Customer churn is a major challenge for telecommunications companies because losing customers can reduce recurring revenue and increase customer acquisition costs.
+This project uses machine learning to predict customer churn using the IBM Telco Customer Churn dataset. It explores customer behavior, trains classification models, compares their performance, and demonstrates how predictions can support business decisions.
 
-This project develops a **Logistic Regression classification model** to identify customers who are likely to discontinue their services. Using Python and Scikit-learn, the project covers the complete machine learning workflow, from data cleaning and feature preprocessing to model evaluation, probability prediction, and decision threshold analysis.
+Selected model: Logistic Regression
+Selected decision threshold: 0.40
+Best validation F1-score: 0.6421
 
-The goal is to demonstrate how predictive analytics can support data-driven customer retention strategies.
+Objectives
 
-## Business Problem
+Analyze customer characteristics associated with churn.
 
-**How can a telecommunications company identify customers at risk of churn and prioritize retention efforts?**
+Perform exploratory data analysis (EDA).
 
-By analyzing customer demographics, subscribed services, contract details, and account information, the model estimates the likelihood that a customer will churn.
+Clean and preprocess numerical and categorical features.
 
-These predictions could help businesses prioritize retention outreach and allocate resources more effectively.
+Train and evaluate Logistic Regression and Random Forest models.
 
-## Project Objectives
+Compare precision, recall, F1-score, and ROC-AUC.
 
-- Clean and prepare customer data for machine learning.
-- Explore customer churn patterns and the target variable.
-- Build a reusable preprocessing and classification pipeline.
-- Train a Logistic Regression model for binary classification.
-- Evaluate performance using classification metrics and ROC-AUC.
-- Generate churn predictions and probabilities for individual customers.
-- Analyze classification thresholds and their impact on customer identification.
+Explore decision thresholds to improve churn detection.
 
-## Tech Stack
+Interpret model coefficients.
 
-| Technology | Purpose |
-|---|---|
-| Python | Model development and analysis |
-| Pandas | Data manipulation and cleaning |
-| NumPy | Numerical operations |
-| Matplotlib | Data visualization |
-| Scikit-learn | Preprocessing, model training, and evaluation |
-| Jupyter Notebook | Interactive development and experimentation |
+Predict churn probabilities for hypothetical new customers.
 
-## Dataset
+Dataset
 
-**Source:** IBM Telco Customer Churn dataset
+Dataset: IBM Telco Customer Churn
 
-The dataset contains telecommunications customer information, including demographic attributes, subscribed services, contract details, billing information, and churn status.
+The dataset contains 7,043 customer records and 21 columns, including customer demographics, services, contract details, billing information, and churn status.
 
-**Target variable:** `Churn`
+Property
 
-- `Yes` — Customer churned.
-- `No` — Customer did not churn.
+Description
 
-The `customerID` column is excluded from model training because it serves as an identifier rather than a meaningful predictive feature.
+Total records
 
-The `TotalCharges` column is converted to numeric format, with invalid or missing values handled during data preparation.
+7,043
 
-*Note: This is an educational project using a publicly available dataset.*
+Original columns
 
-## Machine Learning Workflow
+21
 
-### 1. Data Loading and Exploration
-- Loaded the dataset using Pandas.
-- Inspected data types, dataset structure, and missing values.
-- Examined the target variable and class distribution.
+Target variable
 
-### 2. Data Cleaning
-- Converted `TotalCharges` to a numeric data type.
-- Handled invalid and missing values.
-- Removed the customer identifier from the predictive features.
+Churn
 
-### 3. Data Preparation
-- Separated input features from the target variable.
-- Split the data into training and testing sets.
-- Prepared numerical and categorical features for preprocessing.
+Positive class
 
-### 4. Feature Preprocessing
-Implemented a Scikit-learn preprocessing pipeline:
+Yes
 
-- **Numerical features:** Median imputation and standardization.
-- **Categorical features:** Most-frequent-value imputation and one-hot encoding.
+Negative class
 
-Combining preprocessing and model training in a pipeline helps maintain consistent transformations during training and prediction.
+No
 
-### 5. Model Development
-Trained a Logistic Regression classifier as the baseline model.
+Churned customers
 
-Logistic Regression estimates the probability of a customer belonging to the churn class and converts that probability into a predicted class using a decision threshold.
+1,869
 
-### 6. Model Evaluation
-Evaluated the model using:
+Customers who stayed
 
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- Confusion matrix
-- ROC-AUC
+5,174
 
-### 7. Customer-Level Prediction
-Used the trained pipeline to predict the churn class and estimated churn probability for a hypothetical customer.
+The dataset contains approximately 26.54% churned customers and 73.46% customers who stayed.
 
-### 8. Decision Threshold Analysis
-Compared classification thresholds to understand the trade-off between identifying more potential churners and increasing false-positive predictions.
+Technologies Used
 
-## Model Performance
+Python
 
-The following metrics were recorded during the notebook's initial run. These results should be revalidated by rerunning the notebook before publication.
+Pandas
 
-| Evaluation Metric | Recorded Result |
-|---|---:|
-| Accuracy | 80.55% |
-| Precision — Churn | 65.72% |
-| Recall — Churn | 55.88% |
-| ROC-AUC | 0.8419 |
+NumPy
 
-### What Do These Results Mean?
+Matplotlib
 
-**Accuracy — 80.55%**
+Scikit-learn
 
-The model correctly classified approximately 80.55% of the customers in the test set.
+Jupyter Notebook
 
-**Precision — 65.72%**
+Git and GitHub
 
-Among customers predicted to churn, approximately 65.72% actually churned.
+Project Workflow
 
-**Recall — 55.88%**
+Load and inspect the dataset.
 
-The model identified approximately 55.88% of the customers who actually churned. This suggests that some at-risk customers remain unidentified.
+Check data quality and missing values.
 
-**ROC-AUC — 0.8419**
+Perform exploratory data analysis.
 
-The ROC-AUC score indicates useful discrimination between churners and non-churners across different classification thresholds.
+Prepare input features and the target variable.
 
-### Key Model Insight
+Split the dataset into training, validation, and test sets.
 
-Although the baseline model demonstrates useful predictive performance, its recall indicates an opportunity for improvement.
+Build preprocessing pipelines.
 
-For a customer retention use case, missing a potential churner may be costly. However, contacting too many customers who would not churn can also waste retention resources.
+Train Logistic Regression and Random Forest models.
 
-The appropriate decision threshold therefore depends on the business costs of missed churners, unnecessary outreach, and retention incentives.
+Evaluate model performance.
 
-## Potential Business Applications
+Tune decision thresholds using validation data.
 
-The model could support telecommunications businesses by helping them:
+Interpret Logistic Regression coefficients.
 
-- Prioritize customers for retention campaigns.
-- Identify customer segments that may require additional attention.
-- Support targeted customer engagement strategies.
-- Allocate retention resources based on predicted risk.
-- Evaluate the trade-off between missed churners and unnecessary interventions.
+Evaluate the selected model on the held-out test set.
 
-**Business impact:** These are potential applications of the model. The project does not measure actual reductions in churn, revenue improvements, or campaign effectiveness.
+Visualize model performance.
 
-## Limitations and Future Improvements
+Predict churn for a hypothetical new customer.
 
-The current implementation serves as a baseline rather than a production-ready prediction system.
+Exploratory Data Analysis
 
-Potential next steps include:
+EDA was performed to identify customer characteristics associated with churn.
 
-- **Model comparison:** Evaluate Random Forest and Gradient Boosting against Logistic Regression.
-- **Cross-validation:** Assess model stability across multiple data splits.
-- **Feature interpretation:** Analyze model coefficients to understand associations with churn.
-- **Threshold optimization:** Select thresholds based on business costs and retention capacity.
-- **Probability calibration:** Assess whether predicted churn probabilities correspond to observed churn rates.
-- **Class imbalance analysis:** Investigate suitable strategies for improving minority-class detection.
-- **Independent validation:** Test performance on newer or independent customer data.
-- **Business evaluation:** Estimate the potential value of retention interventions using appropriate cost assumptions.
+1. Churn by Contract Type
 
-## Repository Structure
+Contract type
 
-```text
-Customer-Churn-Prediction/
-├── Customer_Churn_Prediction.ipynb
-└── README.md
-```
+Churn rate
 
-- `Customer_Churn_Prediction.ipynb` — Data exploration, cleaning, preprocessing, model training, evaluation, and customer-level predictions.
-- `README.md` — Project overview, methodology, performance results, and business interpretation.
+Month-to-month
 
-## How to Run the Project
+42.71%
 
-### Prerequisites
+One year
 
-Install Python and the required libraries.
+11.27%
 
-```bash
-pip install pandas numpy matplotlib scikit-learn jupyter
-```
+Two year
 
-### Steps
+2.83%
 
-1. Clone the repository:
+Insight: Month-to-month customers had a substantially higher churn rate than customers on longer contracts.
 
-   ```bash
-   git clone <YOUR_GITHUB_REPOSITORY_URL>
-   ```
+2. Churn by Customer Tenure
 
-2. Navigate to the project folder:
+Customer group
 
-   ```bash
-   cd Customer-Churn-Prediction
-   ```
+Median tenure
 
-3. Start Jupyter Notebook:
+Customers who stayed
 
-   ```bash
-   jupyter notebook
-   ```
+38 months
 
-4. Open `Customer_Churn_Prediction.ipynb` and run the notebook cells in order.
+Customers who churned
 
-Ensure the dataset is downloaded from its original source and placed in the location expected by the notebook. Update the dataset path if necessary.
+10 months
 
-## Key Skills Demonstrated
+Insight: Customers who churned generally had shorter customer tenure, suggesting that early customer engagement may be important for retention.
 
-- Exploratory Data Analysis (EDA)
-- Data Cleaning and Feature Engineering
-- Numerical and Categorical Data Preprocessing
-- Scikit-learn Pipelines and ColumnTransformer
-- Logistic Regression
-- Binary Classification
-- Model Evaluation and ROC-AUC Analysis
-- Probability Prediction and Decision Threshold Analysis
-- Business Problem-Solving with Machine Learning
+3. Churn by Monthly Charges
 
-## Conclusion
+Customer group
 
-This project demonstrates an end-to-end machine learning workflow applied to a real-world business problem: customer churn prediction.
+Median monthly charges
 
-By combining data preprocessing, Logistic Regression, classification metrics, and decision threshold analysis, the project illustrates how machine learning can help businesses identify potential customer risks and make more informed retention decisions.
+Customers who stayed
 
-The baseline results also highlight the importance of evaluating models beyond accuracy, particularly when missed positive cases have meaningful business consequences.
+64.43
 
-This project is intended for educational and portfolio purposes. It uses a public dataset, and its results should not be interpreted as evidence of production performance or guaranteed business outcomes.
+Customers who churned
+
+79.65
+
+Insight: Customers who churned had higher median monthly charges in the exploratory analysis.
+
+4. Churn by Payment Method
+
+Payment method
+
+Churn rate
+
+Electronic check
+
+45.29%
+
+Mailed check
+
+19.11%
+
+Bank transfer (automatic)
+
+16.71%
+
+Credit card (automatic)
+
+15.24%
+
+Insight: Electronic-check users had the highest observed churn rate among the payment methods analyzed.
+
+These findings describe associations in the dataset. They do not establish that any individual characteristic causes churn.
+
+Data Preprocessing
+
+The following preprocessing steps were implemented:
+
+Removed customerID from the model input features.
+
+Separated Churn as the target variable.
+
+Converted TotalCharges to numeric values.
+
+Identified numerical and categorical columns automatically.
+
+Used median imputation for numerical missing values.
+
+Used most-frequent imputation for categorical missing values.
+
+Applied StandardScaler to numerical features.
+
+Applied OneHotEncoder to categorical features.
+
+Combined preprocessing and model training using Scikit-learn pipelines.
+
+The preprocessing pipeline was fitted on training data to help prevent data leakage.
+
+Train, Validation, and Test Split
+
+The dataset was split using stratified sampling.
+
+Dataset
+
+Records
+
+Percentage
+
+Training
+
+4,507
+
+64%
+
+Validation
+
+1,127
+
+16%
+
+Test
+
+1,409
+
+20%
+
+Total
+
+7,043
+
+100%
+
+Stratification maintained a similar churn distribution across the three datasets.
+
+Training set: Used to fit the models.
+
+Validation set: Used for model comparison and threshold selection.
+
+Test set: Reserved for final evaluation of the selected model.
+
+Machine Learning Models
+
+1. Logistic Regression
+
+Logistic Regression estimates the probability that a customer will churn. It provides an interpretable baseline and allows model coefficients to be examined.
+
+2. Random Forest
+
+Random Forest combines multiple decision trees and can capture more complex relationships between customer features and churn.
+
+Both models were trained using the same training dataset and preprocessing approach.
+
+Model Evaluation
+
+The models were compared using validation data. Decision thresholds were selected from the tested values to balance precision and recall.
+
+Validation Results
+
+Model
+
+Threshold
+
+Precision
+
+Recall
+
+F1-score
+
+ROC-AUC
+
+Logistic Regression
+
+0.40
+
+0.6173
+
+0.6689
+
+0.6421
+
+0.8482
+
+Random Forest
+
+0.45
+
+0.5718
+
+0.6923
+
+0.6263
+
+0.8386
+
+Metric Definitions
+
+Accuracy: The proportion of all predictions that are correct.
+
+Precision: The proportion of predicted churners who actually churned.
+
+Recall: The proportion of actual churners correctly identified.
+
+F1-score: The harmonic mean of precision and recall.
+
+ROC-AUC: Measures how well the model ranks churners above non-churners across different thresholds.
+
+Model Selection
+
+Logistic Regression at a threshold of 0.40 was selected as the preferred candidate because it achieved the highest F1-score among the tested model-threshold combinations.
+
+Random Forest at a threshold of 0.45 achieved slightly higher churn recall, making it a reasonable alternative when identifying more potential churners is the main priority.
+
+The final choice depends on the business cost of missed churners versus unnecessary retention outreach.
+
+Decision Threshold Analysis
+
+A classification threshold converts the model's estimated churn probability into a predicted class.
+
+The default threshold is 0.50, but a lower threshold can identify more potential churners at the expense of more false-positive predictions.
+
+For Logistic Regression, the validation results were:
+
+Threshold
+
+Precision
+
+Recall
+
+F1-score
+
+0.30
+
+0.5433
+
+0.7559
+
+0.6322
+
+0.35
+
+0.5808
+
+0.7090
+
+0.6386
+
+0.40
+
+0.6173
+
+0.6689
+
+0.6421
+
+0.45
+
+0.6593
+
+0.6020
+
+0.6294
+
+0.50
+
+0.6936
+
+0.5452
+
+0.6105
+
+0.55
+
+0.7317
+
+0.5017
+
+0.5952
+
+0.60
+
+0.7267
+
+0.3645
+
+0.4855
+
+A threshold of 0.40 provided the best F1-score among the tested values. The selected threshold was chosen using validation data, not by optimizing against the test set.
+
+Final Test Evaluation
+
+Logistic Regression was evaluated on the held-out test set using the selected threshold of 0.40.
+
+Metric
+
+Test result
+
+Accuracy
+
+78.21%
+
+Churn precision
+
+57.70%
+
+Churn recall
+
+67.11%
+
+Churn F1-score
+
+0.6205
+
+Confusion Matrix
+
+Actual / Predicted
+
+Stayed
+
+Churned
+
+Stayed
+
+851
+
+184
+
+Churned
+
+123
+
+251
+
+Interpretation
+
+851 customers who stayed were correctly identified.
+
+251 customers who churned were correctly identified.
+
+184 customers were incorrectly flagged as churners.
+
+123 actual churners were missed by the model.
+
+The model identified approximately 67% of actual churners on the test set. However, the false-positive count shows that some retention outreach may be directed at customers who would otherwise stay.
+
+Feature Coefficient Analysis
+
+Logistic Regression coefficients were examined to understand which features were associated with higher or lower predicted churn scores.
+
+Features Associated with Higher Churn Scores
+
+Feature
+
+Coefficient
+
+Month-to-month contract
+
++0.6478
+
+Fiber optic internet
+
++0.5978
+
+Total charges
+
++0.5055
+
+Streaming TV
+
++0.1982
+
+Streaming movies
+
++0.1683
+
+No online security
+
++0.1571
+
+No tech support
+
++0.1444
+
+Electronic check
+
++0.1417
+
+Features Associated with Lower Churn Scores
+
+Feature
+
+Coefficient
+
+Tenure
+
+-1.2163
+
+Two-year contract
+
+-0.8709
+
+DSL internet
+
+-0.6257
+
+Monthly charges
+
+-0.4838
+
+No multiple lines
+
+-0.3021
+
+Dependents: Yes
+
+-0.2764
+
+Positive coefficients are associated with higher churn scores, while negative coefficients are associated with lower churn scores, holding the other encoded features constant.
+
+The coefficients are expressed on the model's log-odds scale. Numerical features were standardized, and categorical features were one-hot encoded. Correlations between features can affect coefficient signs and magnitudes, so these values should not be interpreted as causal effects.
+
+Visualizations
+
+The notebook includes the following visualizations:
+
+Churn distribution.
+
+Churn rate by contract type.
+
+Customer tenure distribution by churn status.
+
+Monthly charges distribution by churn status.
+
+Churn rate by payment method.
+
+Logistic Regression coefficient chart.
+
+Confusion matrix.
+
+ROC curve.
+
+Precision–recall curve.
+
+These visualizations help communicate customer patterns, model behavior, and classification errors.
+
+Predicting Churn for a New Customer
+
+The trained model was tested using a hypothetical customer profile with the following characteristics:
+
+Tenure: 5 months.
+
+Contract: Month-to-month.
+
+Internet service: Fiber optic.
+
+Online security: No.
+
+Tech support: No.
+
+Payment method: Electronic check.
+
+Monthly charges: 80.00.
+
+Total charges: 400.00.
+
+Prediction Result
+
+Output
+
+Result
+
+Predicted outcome
+
+Churn
+
+Probability of churn
+
+62.52%
+
+Probability of staying
+
+37.48%
+
+Decision threshold
+
+0.40
+
+Because the estimated churn probability exceeded the selected threshold, the model classified this hypothetical customer as likely to churn.
+
+This example demonstrates how the trained model can estimate churn probabilities for new customer records. It is an illustrative prediction, not a guarantee of future behavior.
+
+Business Applications
+
+The findings could help a telecom business:
+
+Identify customers who may be at risk of leaving.
+
+Investigate retention opportunities among early-tenure customers.
+
+Examine churn patterns associated with contract types and payment methods.
+
+Prioritize retention outreach using predicted churn probabilities.
+
+Evaluate the balance between missed churners and unnecessary outreach.
+
+Any retention strategy should be evaluated against actual business outcomes before deployment.
+
+Limitations
+
+The model uses a historical dataset and may not reflect current customer behavior.
+
+Feature associations do not establish causation.
+
+The selected threshold reflects the tested values and current model objective.
+
+False-positive predictions can lead to unnecessary retention costs.
+
+The model's estimated probabilities may require calibration before being used for business decisions.
+
+Performance should be monitored if the model is deployed on new data.
+
+Future Improvements
+
+Test additional models and hyperparameter configurations.
+
+Explore probability calibration.
+
+Use cross-validation for more robust model comparisons.
+
+Evaluate business costs for false positives and false negatives.
+
+Perform additional feature engineering.
+
+Monitor model performance as new customer data becomes available.
+
+Conclusion
+
+This project demonstrates an end-to-end customer churn prediction workflow using Python and Scikit-learn. Exploratory data analysis identified customer segments associated with higher churn, while Logistic Regression and Random Forest were compared using validation metrics.
+
+Logistic Regression at a threshold of 0.40 was selected as the preferred candidate based on its validation F1-score. On the held-out test set, it achieved approximately 78% accuracy and identified approximately 67% of actual churners.
+
+The project highlights how machine learning can support customer retention analysis while emphasizing the importance of threshold selection, careful evaluation, and responsible interpretation.
